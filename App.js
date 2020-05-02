@@ -3,24 +3,44 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HomeScreen from './src/componenets/screens/home-screen'
-import ExploreScreen from './src/componenets/screens/montly-average-screen'
-import ComingSoonScreen from './src/componenets/screens/coming-soon-screen'
+import HomeScreen from './src/screens/home-screen'
+import ComingSoonScreen from './src/screens/coming-soon-screen'
+import { Text, View, StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>{
+    <View style={ styles.Container }>
+      <Text style={styles.Title}>The Code Evaluation</Text>
+      <NavigationContainer>{
         <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} options={homeOptions} />
-            <Tab.Screen name="Monthly average" component={ExploreScreen} options={averageOptions} />
-            <Tab.Screen name="Calendar" component={ComingSoonScreen} options={calendarOptions} />
-            <Tab.Screen name="EF Online" component={ComingSoonScreen} options={efOptions} />
+          <Tab.Screen name="Home" component={HomeScreen} options={homeOptions} />
+          <Tab.Screen name="Monthly average" component={ComingSoonScreen} options={averageOptions} />
+          <Tab.Screen name="Calendar" component={ComingSoonScreen} options={calendarOptions} />
+          <Tab.Screen name="EF Online" component={ComingSoonScreen} options={efOptions} />
         </Tab.Navigator>
       }</NavigationContainer>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  Container: {
+    flex: 1,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingBottom: 5,
+    paddingTop: 5,
+  },
+  Title: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginBottom: 5,
+    textTransform: 'uppercase',
+  }
+});
 
 const homeOptions = {
   tabBarIcon: ({ tintColor }) => (
@@ -30,7 +50,7 @@ const homeOptions = {
 
 const averageOptions = {
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="calculator" size={25} color={tintColor} />
+    <Icon name="child" size={25} color={tintColor} />
   )
 }
 
